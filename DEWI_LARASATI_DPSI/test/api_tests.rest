@@ -1,0 +1,151 @@
+# Base URL
+@baseUrl = https://dewilarasati-1-production.up.railway.app
+
+# Tokens
+@adminToken = <masukkanAdminToken>
+@guruToken = <masukkanGuruToken>
+@siswaToken = <masukkanSiswaToken>
+
+# Authentication
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "password123",
+  "role": "admin"
+}
+
+###
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "guru11",
+  "password": "password123",
+  "role": "guru"
+}
+
+###
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "siswa2",
+  "password": "password123",
+  "role": "siswa"
+}
+
+### Login User
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "password123"
+}
+
+###
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "guru11",
+  "password": "password123"
+}
+
+###
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "siswa1",
+  "password": "password123"
+}
+
+### CRUD Nilai
+### Create Nilai (Guru)
+POST {{baseUrl}}/api/nilai
+Authorization: Bearer {{guruToken}}
+Content-Type: application/json
+
+{
+  "siswaId": "SIS1",
+  "nilai": 79
+}
+
+### Edit Nilai (Guru)
+PUT {{baseUrl}}/api/nilai/1
+Authorization: Bearer {{guruToken}}
+Content-Type: application/json
+
+{
+  "nilai": 95
+}
+
+### Delete Nilai (Guru)
+DELETE {{baseUrl}}/api/nilai/1
+Authorization: Bearer {{guruToken}}
+
+### Get All Nilai (Authenticated Users)
+GET {{baseUrl}}/api/nilai
+Authorization: Bearer {{guruToken}}
+
+### CRUD Jadwal
+### Create Jadwal (Admin)
+POST {{baseUrl}}/api/jadwal
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "mataPelajaran": "Ngoding",
+  "waktu": "2024-08-01T08:00:00.000Z"
+}
+
+### Edit Jadwal (Admin)
+PUT {{baseUrl}}/api/jadwal/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "mataPelajaran": "Belajar Ngoding TEROS",
+  "waktu": "2024-08-02T09:00:00.000Z"
+}
+
+### Delete Jadwal (Admin)
+DELETE {{baseUrl}}/api/jadwal/1
+Authorization: Bearer {{adminToken}}
+
+### Get All Jadwal (Authenticated Users)
+GET {{baseUrl}}/api/jadwal
+Authorization: Bearer {{siswaToken}}
+
+### CRUD Kehadiran
+### Create Kehadiran (Guru)
+POST {{baseUrl}}/api/kehadiran
+Authorization: Bearer {{guruToken}}
+Content-Type: application/json
+
+{
+  "siswaId": "SIS1",
+  "tanggal": "2024-08-01T08:00:00.000Z",
+  "status": "hadir"
+}
+
+### Edit Kehadiran (Guru)
+PUT {{baseUrl}}/api/kehadiran/1
+Authorization: Bearer {{guruToken}}
+Content-Type: application/json
+
+{
+  "status": "tidak hadir"
+}
+
+### Delete Kehadiran (Guru)
+DELETE {{baseUrl}}/api/kehadiran/1
+Authorization: Bearer {{guruToken}}
+
+### Get All Kehadiran (Authenticated Users)
+GET {{baseUrl}}/api/kehadiran
+Authorization: Bearer {{siswaToken}}
